@@ -96,11 +96,15 @@ function handleImageClick(event) {
   </div>
     `);
   instance.show();  
-  container.addEventListener("keydown", (event) => {
-  if (event.code === "Escape") {
-    instance.close();
+  
+  function handleKeyDown(event) {
+    if (event.code === "Escape") {
+      instance.close();
+      document.removeEventListener("keydown", handleKeyDown);
+    }
   }
-})
+
+  document.addEventListener("keydown", handleKeyDown);
 }
 
 
